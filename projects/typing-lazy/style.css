@@ -1,0 +1,14 @@
+body {
+	margin: 2em;
+	font-size: 16px;
+}
+
+.demo {
+	max-width: 400px;
+	margin: 3em auto 0;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 1.5em;
+	font-weight: bold;
+	white-space: pre; /* For \r\n  line breaks. */
+}

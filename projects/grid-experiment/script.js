@@ -1,0 +1,1 @@
+// Array.from(document.querySelectorAll('li')).forEach(el => el.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`);

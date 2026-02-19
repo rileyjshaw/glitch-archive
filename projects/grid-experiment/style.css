@@ -1,0 +1,214 @@
+:root {
+  --logo-width: 80px;
+  --logo-padding: 20px;
+  --stroke-width: 10px;
+  --header-width: 500px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS';
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: [header] 500px [main] 1fr;  /* TODO(riley): --header-width */
+}
+
+header {
+  position: sticky;
+  grid-column: header;
+  padding: 0 2em;
+  top: 0;
+  bottom: 0;
+  max-height: 100vh;
+  overflow: auto;
+  background: rgb(64, 39, 128);
+  color: white;
+  background: #000;
+  color: #fff;
+}
+
+main {
+  grid-column: main;
+  grid-row: 1;
+  padding: 0 110px;
+}
+
+header h1 {
+  font-size: 120px;
+  line-height: 0.9;
+  margin: 0;
+  padding: 60px 0 30px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.now {
+  display: block;
+  height: 60px;
+  width: 60px;
+  margin: var(--logo-padding) auto;
+  border-radius: 50%;
+  text-align: center;
+  border: 2px solid black;
+  padding: 10px;
+  line-height: 60px;
+  text-transform: lowercase;
+}
+
+.now-container-ughhhh::after {
+  content: '';
+  background: no-repeat center/100% 100% url('./rtl.svg');
+  height: 200px;
+  width: 50%;
+  display: block;
+  box-sizing: border-box;
+  border-left: calc(var(--logo-width) / 2 + var(--logo-padding)) solid transparent;  /* TODO(riley): This is still a bit off, since the SVG image is offset by 1% of the viewBox. */
+}
+
+.currently li {
+  border: 4px solid black;
+  height: 200px;
+  width: 300px;
+  margin-right: 60px;
+}
+
+ul.timeline {
+  display: block;
+}
+
+.content-ughhh {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+li:nth-child(even) .content-ughhh {
+  flex-direction: row-reverse;
+}
+
+.timeline li:not(:last-child)::after {
+  content: '';
+  background: no-repeat center/100% 100% url('./ltr.svg');
+  height: 200px;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  border: 0 solid transparent;
+  border-width: 0 calc(var(--logo-width) / 2 + var(--logo-padding));  /* TODO(riley): This is still a bit off, since the SVG image is offset by 1% of the viewBox. */
+}
+
+.timeline li:not(:last-child):nth-child(even)::after {
+  background: no-repeat center/100% 100% url('./rtl.svg');
+}
+
+.logo {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: var(--logo-padding);
+  width: var(--logo-width);
+  height: var(--logo-width);
+}
+
+.timeline .info {
+  display: inline-block;
+  padding: 6px 30px;
+  border: 4px solid black;
+  margin: 0 120px;
+  position: relative
+}
+
+.timeline .info::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  height: 4px;
+  width: 100px;
+  display: block;
+  background: black;
+}
+
+.timeline li:nth-child(odd) .info::before {
+  right: 100%;
+}
+
+.timeline li:nth-child(even) .info::before {
+  left: 100%;
+}
+
+.lab {
+  background: #000;
+  color: #fff;
+}
+
+.lab li {
+  height: 100px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+}
+
+.lab li:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+blockquote {
+  position: relative;
+  color: #fff;
+  background: #000;
+  margin: 0;
+  height: 100vh;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+blockquote::before, blockquote::after {
+  content: '';
+  height: 80px;
+  width: 80px;
+  position: absolute;
+  left: var(--header-width);
+  bottom: 100%;
+}
+
+blockquote::before {
+  background: #000;
+  border-radius: 50%;
+  border-bottom-left-radius: 0;
+}
+
+blockquote::after {
+  background: #fff;
+  border-radius: 0;
+  border-bottom-left-radius: 50%;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+@media (max-width: 1200px) {  /* TODO(riley): Would love to have this based on --header-width, eg. (max-width: calc(var(--header-width) * 2.5)) */
+  .content-ughhh {
+    flex-direction: column !important;    
+  }
+  
+  .now-container-ughhhh::after, .timeline li:not(:last-child)::after {
+    width: 100%;
+    border: 0;
+    background: no-repeat center/100% 100% url('./up.svg') !important;
+  }
+}

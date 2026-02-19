@@ -1,0 +1,64 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	font-family: 'Roboto Slab', serif;
+	background: #82ae8b;
+}
+
+.invoice {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	height: 600px;
+	width: 600px;
+	max-width: 65%;
+	max-height: min(65vh, 65vw);
+	display: flex;
+	flex-direction: column;
+	padding: 44px;
+	background: #fff;
+	box-shadow:
+		0 3px 6px rgba(0, 0, 0, 0.16),
+		0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.invoice header {
+	display: flex;
+	justify-content: space-between;
+	align-items: last baseline;
+	flex-wrap: wrap;
+}
+
+.invoice h1 {
+	line-height: 0.6em;
+}
+
+.invoice .number {
+	font-size: 0.4em;
+	color: #888;
+}
+
+.invoice .date {
+	font-size: 0.7em;
+	text-transform: uppercase;
+	letter-spacing: 0.07em;
+}
+
+.ellipsis {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: min(96px, 16vw);
+	color: #888;
+}

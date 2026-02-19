@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>erasers</title>
+	</head>
+	<body>
+		<script>
+			var canvas = document.createElement('canvas');
+			var ctx = canvas.getContext('2d');
+			var w = (canvas.width = window.innerWidth);
+			var h = (canvas.height = window.innerHeight);
+
+			Promise.all(
+				['../../erasers/1.png', '../../erasers/2.png'].map(
+					url =>
+						new Promise((resolve, reject) => {
+							var image = new Image();
+							image.onload = () => resolve(image);
+							image.onerror = reject;
+							image.src = url;
+						}),
+				),
+			).then(images => {
+				var agents = [].concat(...Array(10).fill(images)).map(image => ({
+					image,
+					vx: Math.random() - 0.5,
+					vy: Math.random() - 0.5,
+					x: w * Math.random(),
+					y: h * Math.random(),
+				}));
+
+				!(function loop() {
+					agents.forEach(agent => {
+						var { image, vx, vy, x, y } = agent;
+						agent.x += (vx * w) / 50 + w;
+						agent.y += (vy * h) / 50 + h;
+						agent.x %= w;
+						agent.y %= h;
+						agent.vx += (Math.random() - 0.5) / 50;
+						agent.vy += (Math.random() - 0.5) / 50;
+
+						ctx.drawImage(image, x, y);
+					});
+					requestAnimationFrame(loop);
+				})();
+			});
+
+			document.body.appendChild(canvas);
+		</script>
+	</body>
+</html>

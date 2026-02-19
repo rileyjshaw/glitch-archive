@@ -1,0 +1,79 @@
+* {
+	box-sizing: border-box;
+}
+
+.glitchButton {
+  z-index: 1;
+}
+
+.glitchButton .glitchButtonElement {
+  padding: 0 20px 0 0 !important;
+}
+
+body, ul {
+	margin: 0;
+}
+ul {
+	padding: 0;
+	list-style: none;
+	display: grid;
+}
+
+.grid {
+	overflow: scroll;
+	height: 100vh;
+	width: 100vw;
+	scroll-snap-type: both mandatory;
+	scroll-padding: 12px;
+}
+
+.grid > li, .container, button {
+	height: 100%;
+	width: 100%;
+}
+
+.grid > li {
+	box-sizing: border-box;
+	scroll-snap-align: center;
+	padding: 12px;
+	background: #a01;
+}
+
+.container {
+	background: #d02;
+	position: relative;
+}
+
+.grid-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 50vh;
+	width: 50vh;
+	pointer-events: none;
+  grid-gap: 4px;
+}
+
+.grid-icon > li {
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.grid-icon, .grid-icon li {
+	transition: background 0.3s;
+}
+
+button {
+	background: transparent;
+	color: #fff;
+	border: 0;
+	font: bold 60px sans-serif;
+}
+
+.clicked .grid-icon {
+	background: #d02;
+}
+
+.clicked .grid-icon > li {
+  background: #cd0;
+}
