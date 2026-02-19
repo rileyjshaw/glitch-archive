@@ -18,7 +18,7 @@ const names = fs.existsSync(projectsDir)
 			.sort((a, b) => a.localeCompare(b))
 	: [];
 
-const links = names.map(name => `<li><a href="${base}projects/${name}/">${name}</a></li>`).join('\n');
+const links = names.map(name => `<li><a href="${base}projects/${name}/">${name}</a></li>`).join('\n\t\t\t');
 
 const html = `<!doctype html>
 <html lang="en">
@@ -78,6 +78,9 @@ const html = `<!doctype html>
 
 			a {
 				color: inherit;
+			}
+
+			li a {
 				text-decoration: none;
 			}
 
@@ -150,6 +153,7 @@ const html = `<!doctype html>
 		<ol>
 			${links || '<li class="hint">No projects yet. Add folders under /projects.</li>'}
 		</ol>
+		<p>To browse or download the source code for these projects, I’ve <a href="https://github.com/rileyjshaw/glitch-dot-com-archive">archived them on GitHub</a>.</p>
 	</body>
 </html>
 `;
